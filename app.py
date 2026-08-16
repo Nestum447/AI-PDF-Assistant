@@ -74,16 +74,16 @@ PREGUNTA:
 {pregunta}
 """
 
+      try:
+            with st.spinner("Analizando el documento..."):
+                response = client.responses.create(
+                    model="gpt-5-mini",
+                    input=prompt
+                )
 
+            st.subheader("Respuesta")
+            st.write(response.output_text)
 
-try:
-    with st.spinner("Probando conexión con OpenAI..."):
-        response = client.responses.create(
-            model="gpt-5-mini",
-            input="Responde solamente: CONEXIÓN EXITOSA"
-        )
+        except Exception as e:
+            st.error(f"Error al consultar OpenAI: {e}")
 
-    st.success(response.output_text)
-
-except Exception as e:
-    st.error(f"Error al consultar OpenAI: {e}")
