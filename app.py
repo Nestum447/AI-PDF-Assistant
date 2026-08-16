@@ -74,7 +74,7 @@ PREGUNTA:
 {pregunta}
 """
 
-      try:
+        try:
             with st.spinner("Analizando el documento..."):
                 response = client.responses.create(
                     model="gpt-5-mini",
@@ -86,4 +86,3 @@ PREGUNTA:
 
         except Exception as e:
             st.error(f"Error al consultar OpenAI: {e}")
-
