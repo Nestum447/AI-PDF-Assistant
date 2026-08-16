@@ -13,6 +13,20 @@ if "OPENAI_API_KEY" not in st.secrets:
     st.stop()
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+# PRUEBA DE CONEXIÓN CON OPENAI
+if st.button("🧪 Probar conexión con OpenAI"):
+    try:
+        with st.spinner("Probando conexión..."):
+            response = client.responses.create(
+                model="gpt-5-mini",
+                input="Responde únicamente: CONEXION EXITOSA"
+            )
+
+        st.success(response.output_text)
+
+    except Exception as e:
+        st.error(f"ERROR: {e}")
+
 
 archivo = st.file_uploader("Sube un PDF", type=["pdf"])
 
